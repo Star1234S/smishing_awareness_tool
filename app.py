@@ -316,21 +316,18 @@ def get_recommendation(detection_score, total_score_100):
         advice = (
             "You should be very careful with SMS links. "
             "Always verify the sender through official channels before clicking."
-            "Report suspicious SMS messages by forwarding them to the designated number 330330."
         )
     elif detection_score <= 7:
         detection_level = "Moderate smishing vulnerability"
         advice = (
             "You identified some messages correctly, but you may still miss warning signs "
             "such as fake URLs, urgent language, or unknown senders."
-            "Report suspicious SMS messages by forwarding them to the designated number 330330."
         )
     else:
         detection_level = "Low smishing vulnerability"
         advice = (
             "You performed well in the SMS detection task. "
             "Continue checking sender names, URLs, and suspicious requests."
-            "Report suspicious SMS messages by forwarding them to the designated number 330330."
         )
 
     if total_score_100 < 50:
@@ -340,8 +337,15 @@ def get_recommendation(detection_score, total_score_100):
     else:
         awareness_level = "High awareness"
 
-    return detection_level, awareness_level, advice
+    reporting_advice = (
+        '<br><br>'
+        '<strong>Report suspicious SMS messages by forwarding them to the designated number '
+        '<u>330330</u>.</strong>'
+    )
 
+    full_advice = advice + reporting_advice
+
+    return detection_level, awareness_level, full_advice
 
 def initialise_session_state():
     if "page" not in st.session_state:
@@ -421,15 +425,13 @@ def show_welcome_page():
         Approval Number: 76424/2026
         """
     )
-    st.write("""
-        *Investigator Contact:   
-             
-     Principal Investigator: Sarah S.A
-             
-     Institution: Newcastle University
-             
-     Email: S.S.A.Alsubaiei2@newcastle.ac.uk """
-    )
+    st.markdown("""
+    **Researcher Contact Details**
+
+    **Researcher:** Sarah S. A. Alsubaiei  
+    **Institution:** Newcastle University  
+    **Email:** S.S.Alsubaiei2@newcastle.ac.uk
+""")
 
 
     consent = st.checkbox(
@@ -782,7 +784,22 @@ def show_result_page():
     st.write(f"**Awareness level:** {awareness_level}")
 
     st.subheader("Recommendation")
-    st.info(advice)
+    st.markdown(
+    f"""
+    <div style="
+        background-color: #EAF4F8;
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid #D0E3EA;
+        color: #1B4965;
+        font-size: 16px;
+        line-height: 1.6;
+    ">
+        {advice}
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
     st.divider()
 
