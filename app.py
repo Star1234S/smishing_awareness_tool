@@ -380,7 +380,7 @@ def show_welcome_page():
     st.title("SMiShing Awareness and Detection Tool")
 
     st.subheader(
-        "Exploring the Effect of Age on Smishing Vulnerability Among Saudi Users"
+        "Research on SMS Phishing Awareness Among Saudi Users"
     )
 
     st.write(
@@ -416,15 +416,15 @@ def show_welcome_page():
     )
 
     st.warning(
-        """
-        **Ethical Approval Notice**
+    """
+    **Ethical Approval**
 
-        This study has been reviewed and approved by the Institutional Review Board 
-        at Newcastle University.
+    This research has received ethical approval from the
+    Newcastle University Ethics Committee.
 
-        Approval Number: 76424/2026
-        """
-    )
+    **Reference:** 76424/2026
+    """
+)
     st.markdown("""
     **Researcher Contact Details**
 
